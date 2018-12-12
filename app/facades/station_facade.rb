@@ -11,7 +11,7 @@ class StationFacade
                 distance: station_data[:distance],
                 access_times: station_data[:access_times]}
     Station.new(params)
-    end.first(10)
+    end
   end
 
   private
