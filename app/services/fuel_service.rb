@@ -1,7 +1,6 @@
 class FuelService
 
-  def initialize(token, zip_code)
-    @token = token
+  def initialize(zip_code)
     @zip_code = zip_code
   end
 
@@ -18,7 +17,7 @@ class FuelService
 
   def conn
     Faraday.new(:url => 'https://developer.nrel.gov') do |faraday|
-      faraday.headers['api_key'] = @token
+      faraday.headers['api_key'] = ENV["api_key"]
       # https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=1&api_key=YOUR_KEY_HERE'
       faraday.adapter  Faraday.default_adapter
     end
