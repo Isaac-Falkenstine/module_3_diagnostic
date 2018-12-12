@@ -54,4 +54,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  ENV['RAILS_ENV'] ||= 'test'
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'spec_helper'
+  require 'rspec/rails'
+  require 'webmock/rspec'
+  require 'vcr'
+
+  VCR.configure do |config|
+    config.cassette_library_dir = "spec/cassettes"
+    config.hook_into :webmock
+  end
 end

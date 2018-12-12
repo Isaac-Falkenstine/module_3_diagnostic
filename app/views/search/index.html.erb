@@ -1,10 +1,10 @@
 <%= @facade.stations.count %> Closest Stations
 <% @facade.stations.each do |station| %>
   <ul class="station">
-    <li class="name"><%= station.name %></li>
-    <li class="distance"><%= station.distance %></li>
-    <li class="address"><%= station.address %></li>
-    <li class="fuel_type"><%= station.fuel_type %></li>
-    <li class="access_times"><%= station.access_times %></li>
+    <li class="name">Station Name: <%= station.name %></li>
+    <li class="distance">Distance: <%= station.distance %>(mi)</li>
+    <li class="address">Address: <%= station.address %></li>
+    <li class="fuel_type">Fuel Type: <%= station.fuel_type %></li>
+    <li class="access_times">Hours: <%= station.access_times %></li>
   </ul>
 <% end %>
