@@ -4,12 +4,12 @@ class StationFacade
   end
 
   def stations
-    @stations ||= station_fetch_result.map do |station_data|
-      params = {name: station_data[:name],
-                address: station_data[:address],
-                fuel_type: station_data[:fuel_type],
+    @stations ||= station_fetch_result[:fuel_stations].map do |station_data|
+      params = {name: station_data[:station_name],
+                address: station_data[:street_address],
+                fuel_type: station_data[:fuel_type_code],
                 distance: station_data[:distance],
-                access_times: station_data[:access_times]}
+                access_times: station_data[:access_days_time]}
     Station.new(params)
     end
   end

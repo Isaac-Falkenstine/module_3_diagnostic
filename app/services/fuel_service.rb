@@ -5,7 +5,7 @@ class FuelService
   end
 
   def stations_json
-    get_json("/api/alt-fuel-stations/v1/nearest.json?limit=10&location=#{@zip_code}&fuel_type=ELEC&fuel_type=LPG&radius=6")
+    get_json("/api/alt-fuel-stations/v1/nearest.json?limit=10&api_key=#{ENV["api_key"]}&location=#{@zip_code}&fuel_type=ELEC&fuel_type=LPG&radius=6")
   end
 
   private
@@ -17,7 +17,6 @@ class FuelService
 
   def conn
     Faraday.new(:url => 'https://developer.nrel.gov') do |faraday|
-      faraday.headers['X-Api-Key'] = ENV["api_key"]
       faraday.adapter  Faraday.default_adapter
     end
   end
