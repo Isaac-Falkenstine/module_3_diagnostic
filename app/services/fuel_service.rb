@@ -5,7 +5,7 @@ class FuelService
   end
 
   def stations_json
-    get_json("/api/alt-fuel-stations/v1/nearest.json?limit=10&location=#{@zip_code}&fuel_type=ELEC&fuel_type=LPG&radius=6")
+    get_json("/api/alt-fuel-stations/v1/nearest.json?limit=10&location=#{@zip_code}&fuel_type=ELEC,LPG&radius=6")
   end
 
   private

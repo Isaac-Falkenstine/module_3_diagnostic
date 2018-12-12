@@ -10,21 +10,23 @@ require 'rails_helper'
 
 feature "User can use search bar" do
   scenario "and see 10 closest stations" do
-    visit "/"
+    VCR.use_cassette("search") do
+      visit "/"
 
-    fill_in :zip_code, with: "80203"
-    click_on "Locate"
+      fill_in :zip_code, with: "80203"
+      click_on "Locate"
 
-    expect(current_path).to eq("/search")
+      expect(current_path).to eq("/search")
 
-    expect(page).to have_content("8 Closest Stations")
+      expect(page).to have_content("10 Closest Stations")
 
-    within(first(".station")) do
-      expect(page).to have_css(".name")
-      expect(page).to have_css(".address")
-      expect(page).to have_css(".fuel_type")
-      expect(page).to have_css(".distance")
-      expect(page).to have_css(".access_times")
+      within(first(".station")) do
+        expect(page).to have_css(".name")
+        expect(page).to have_css(".address")
+        expect(page).to have_css(".fuel_type")
+        expect(page).to have_css(".distance")
+        expect(page).to have_css(".access_times")
+      end
     end
   end
 end
